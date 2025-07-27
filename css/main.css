@@ -1,0 +1,144 @@
+body { 
+    font-family: sans-serif; 
+    background: #f7faff;
+    color: #222;
+    margin: 0;
+    padding: 20px; }
+
+.container {
+    max-width: 1100px;
+    margin: 40px auto;
+    background: #fff;
+    border-radius: 1em;
+    box-shadow: 0 4px 24px #bcd3;
+    padding: 2em 2em 1.5em 2em;
+}
+
+h2 {
+    font-family: Arial;
+    text-align: center;
+    font-size: 2em;
+    font-weight: bold;
+    color: #4f8cff;
+    margin-bottom: 1.2em;
+}
+
+.controls-area {
+    display: flex;
+    justify-content: center;
+    gap: 1em;
+    align-items: center;
+    margin-bottom: 1em;
+    background: #f0f4fa;
+    border-radius: 0.7em;
+    padding: 1em 1.5em;
+    box-shadow: 0 2px 8px #bcd2;
+}
+
+label[for="bpmRange"] {
+    font-weight: 500;
+    color: #4f8cff;
+    font-size: 1.1em;
+}
+
+#bpmRange {
+    accent-color: #4f8cff;
+    width: 160px;
+    margin: 0 0.5em;
+}
+
+.btn-play, .btn-code, .btn-clear {
+    border: none;
+    border-radius: 0.75em;
+    background: linear-gradient(90deg, #4f8cff 0%, #6ed0fa 100%);
+    color: #fff;
+    font-size: 1.1em;
+    box-shadow: 0 2px 8px rgba(79,140,255,0.12);
+    transition: background 0.2s, box-shadow 0.2s, transform 0.1s;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    height: 3rem;
+    min-width: 3rem;
+    padding: 0 1.5em;
+    margin-left: 0.5em;
+}
+
+.btn-play:hover, .btn-code:hover, .btn-clear:hover {
+    background: linear-gradient(90deg, #6ed0fa 0%, #4f8cff 100%);
+    box-shadow: 0 4px 16px rgba(79,140,255,0.18);
+    transform: scale(1.04);
+}
+
+.grid-area {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1em;
+    background: #f0f4fa;
+    border-radius: 0.7em;
+    box-shadow: 0 2px 8px #bcd2;
+    padding: 1.2em 0;
+}
+
+#output-area {
+    margin-top: 1.5em;
+    background: #f0f4fa;
+    border-radius: 0.5em;
+    box-shadow: 0 2px 8px #bcd3;
+    padding: 1em;
+    border: 1px solid #bcd;
+    display: none; /* 默认隐藏，生成代码后显示 */
+}
+
+#output-code, #output {
+    font-family: 'Fira Mono', 'Consolas', monospace;
+    font-size: 1em;
+    color: #333;
+    background: none;
+    border: none;
+    padding: 0;
+    white-space: pre-wrap;
+}
+
+#output {
+    font-family: 'Consolas', monospace;
+    font-size: 1em;
+    color: #333;
+    white-space: pre-wrap;
+}
+
+.cell { 
+    fill: #e3e9f7;
+    stroke: #bcd;
+    stroke-width: 1;
+    cursor: pointer;
+    transition: fill 0.2s, stroke 0.2s, filter 0.2s;
+}
+
+.cell.active{
+    fill: #4f8cff;
+    stroke: #1a4fa0;
+    filter: drop-shadow(0 0 4px #4f8cff88);
+}
+
+.cell.current {
+    fill: #fffbe6;
+    stroke: #ffd700;
+    stroke-width: 2;
+}
+
+.icon-play, .icon-pause {
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    background-size: 24px 24px;
+    background-repeat: no-repeat;
+}
+.icon-play {
+    background-image: url(../icons/play.svg);
+}
+.icon-pause {
+    background-image: url(../icons/pause.svg);
+}
+
