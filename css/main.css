@@ -71,6 +71,40 @@ label[for="bpmRange"] {
     transform: scale(1.04);
 }
 
+.preset-area {
+    display: flex;
+    align-items: center;
+    gap: 0.1em;
+}
+
+.select-reset {
+    appearance: none;
+    -webkit-appearance: none;
+    background: linear-gradient(90deg, #4f8cff 0%, #6ed0fa 100%);
+    border: 2.5px solid #4f8cff;
+    border-radius: 0.75em;
+    height: 3rem;
+    width: 2.5rem;
+    min-width: 2.5rem;
+    box-shadow: 0 2px 8px rgba(79,140,255,0.12);
+    cursor: pointer;
+    margin-left: 0.5em;
+    position: relative;
+    color: transparent; /* 主区文本透明 */
+    background-image: url("data:image/svg+xml;utf8,<svg width='20' height='20' viewBox='0 0 20 20' fill='white' xmlns='http://www.w3.org/2000/svg'><path d='M5.516 7.548a.75.75 0 0 1 1.06 0L10 10.972l3.424-3.424a.75.75 0 1 1 1.06 1.06l-3.954 3.954a.75.75 0 0 1-1.06 0l-3.954-3.954a.75.75 0 0 1 0-1.06z'/></svg>");
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    background-size: 1.2em;
+}
+
+/* 下拉菜单选项正常显示 */
+.select-reset option {
+    color: #222;
+    background: #fff;
+    text-indent: 0;
+}
+
+
 .grid-area {
     display: flex;
     justify-content: center;
@@ -254,3 +288,42 @@ label[for="bpmRange"] {
     stroke: navy;
     stroke-width: 1;
 }
+
+
+
+.btn-play, .btn-code, .btn-clear, .btn-add, .btn-reset, .select-reset {
+    position: relative;
+}
+
+/* 美化所有带 title 的按钮的悬浮提示 */
+[data-tooltip]:hover::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    left: 50%;
+    top: -2.2em;
+    transform: translateX(-50%);
+    background: linear-gradient(90deg, #4f8cff 0%, #6ed0fa 100%);
+    color: #fff;
+    padding: 0.45em 1.2em;
+    border-radius: 0.6em;
+    font-size: 0.98em;
+    font-family: inherit;
+    white-space: nowrap;
+    box-shadow: 0 2px 12px #4f8cff33;
+    z-index: 9999;
+    opacity: 0.50;
+    pointer-events: none;
+}
+[data-tooltip]:hover::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: -0.8em;
+    transform: translateX(-50%);
+    border: 7px solid transparent;
+    border-top: 7px solid #4f8cff;
+    z-index: 9999;
+    opacity: 0.60;
+    pointer-events: none;
+}
+

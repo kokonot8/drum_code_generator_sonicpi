@@ -7,7 +7,7 @@
 </head>
 <body>
     <div class="container">
-        <h2>Drum Code Generator</h2>
+        <h2>Drum Code Generator for Sonic Pi</h2>
         <div class="controls-area">
             <label for="bpmRange">BPM: <span id="bpmValue">120</span></label>
             <input type="range" id="bpmRange" min="60" max="240" value="120">
@@ -20,11 +20,14 @@
             <button onclick="toggleClear()", class="btn-clear">
                 Clear
             </button>
-            <button class="btn-reset" onclick="resetTracks()">
-                Reset
-            </button>
+            <div class="preset-area">
+                <button class="btn-reset" id="resetBotton" onclick="resetTracks()">
+                    Reset
+                </button>
+                <select class="select-reset" id="presetSelect"></select>
+            </div>
             <button onclick="generateCode()" class="btn-code">
-                SonicPi Code
+                Code
             </button>
         </div>
         <div class="grid-area">
@@ -36,7 +39,8 @@
         </div>
     </div>
 
-
+<script src="js/sampleConfig.js"></script>
+<script src="js/genresConfig.js"></script>
 <script src="/js/main.js"></script>
 
 </body>

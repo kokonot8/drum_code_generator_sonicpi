@@ -1,124 +1,5 @@
 
-// 列举乐器类别，每个类别包含多个采样，每个采样有标签和音频文件路径和sonic pi中的采样名
-const instrumentCategories = [
-    {
-        name: "Kick",
-        samples: [
-            { label: "808 Kick", audio: "sounds/bd_808.flac", sample: ":bd_808" },
-            { label: "Ada Kick", audio: "sounds/bd_ada.flac", sample: ":bd_ada" },
-            { label: "Haus Kick", audio: "sounds/bd_haus.flac", sample: ":bd_haus" },
-            { label: "Pure Kick", audio: "sounds/bd_pure.flac", sample: ":bd_pure" },
-            { label: "Zum Kick", audio: "sounds/bd_zum.flac", sample: ":bd_zum" },
-            { label: "Gas Kick", audio: "sounds/bd_gas.flac", sample: ":bd_gas" },
-            { label: "Sone Kick", audio: "sounds/bd_sone.flac", sample: ":bd_sone" },
-            { label: "Zome Kick", audio: "sounds/bd_zome.flac", sample: ":bd_zome" },
-            { label: "Boom Kick", audio: "sounds/bd_boom.flac", sample: ":bd_boom" },
-            { label: "Klub Kick", audio: "sounds/bd_klub.flac", sample: ":bd_klub" },
-            { label: "Fat Kick", audio: "sounds/bd_fat.flac", sample: ":bd_fat" },
-            { label: "Tek Kick", audio: "sounds/bd_tek.flac", sample: ":bd_tek" },
-            { label: "Mehackit Kick", audio: "sounds/bd_mehackit.flac", sample: ":bd_mehackit" },
-            { label: "Chip Kick", audio: "sounds/bd_chip.flac", sample: ":bd_chip" },
-            { label: "Jazz Kick", audio: "sounds/bd_jazz.flac", sample: ":bd_jazz" }
-        ]
-    },
-    {
-        name: "Snare",
-        samples: [
-            { label: "Dub Snare", audio: "sounds/sn_dub.flac", sample: ":sn_dub" },
-            { label: "Dolf Snare", audio: "sounds/sn_dolf.flac", sample: ":sn_dolf" },
-            { label: "Zome Snare", audio: "sounds/sn_zome.flac", sample: ":sn_zome" },
-            { label: "Generic Snare", audio: "sounds/sn_generic.flac", sample: ":sn_generic" }
-        ]
-    },
-    {
-        name: "Hi-Hat",
-        samples: [
-            { label: "Closed Cymbal", audio: "sounds/drum_cymbal_closed.flac", sample: ":drum_cymbal_closed" },
-            { label: "Open Cymbal", audio: "sounds/drum_cymbal_open.flac", sample: ":drum_cymbal_open" },
-            { label: "Pedal Cymbal", audio: "sounds/drum_cymbal_pedal.flac", sample: ":drum_cymbal_pedal" },
-            { label: "Soft Cymbal", audio: "sounds/drum_cymbal_soft.flac", sample: ":drum_cymbal_soft" },
-            { label: "Hard Cymbal", audio: "sounds/drum_cymbal_hard.flac", sample: ":drum_cymbal_hard" },
-            { label: "Snap Hat", audio: "sounds/hat_snap.flac", sample: ":hat_snap" },
-            { label: "Tap Hat", audio: "sounds/hat_tap.flac", sample: ":hat_tap" },
-            { label: "Cats Hat", audio: "sounds/hat_cats.flac", sample: ":hat_cats" },
-            { label: "Bdu Hat", audio: "sounds/hat_bdu.flac", sample: ":hat_bdu" },
-            { label: "Psych Hat", audio: "sounds/hat_psych.flac", sample: ":hat_psych" },
-            { label: "Zild Hat", audio: "sounds/hat_zild.flac", sample: ":hat_zild" },
-            { label: "Zap Hat", audio: "sounds/hat_zap.flac", sample: ":hat_zap" }
-        ]
-    },
-    {
-        name: "Clap",
-        samples: [
-            { label: "Snap", audio: "sounds/perc_snap.flac", sample: ":perc_snap" },
-            { label: "Snap2", audio: "sounds/perc_snap2.flac", sample: ":perc_snap2" }
-        ]
-    },
-    {
-        name: "Percussion",
-        samples: [
-            { label: "Bell", audio: "sounds/perc_bell.flac", sample: ":perc_bell" },
-            { label: "Bell2", audio: "sounds/perc_bell_2.flac", sample: ":perc_bell_2" },
-            { label: "Swash", audio: "sounds/perc_swash.flac", sample: ":perc_swash" },
-            { label: "Till", audio: "sounds/perc_till.flac", sample: ":perc_till" },
-            { label: "Door", audio: "sounds/perc_door.flac", sample: ":perc_door" },
-            { label: "Impact1", audio: "sounds/perc_impact_1.flac", sample: ":perc_impact_1" },
-            { label: "Impact2", audio: "sounds/perc_impact_2.flac", sample: ":perc_impact_2" },
-            { label: "Swoosh", audio: "sounds/perc_swoosh.flac", sample: ":perc_swoosh" }
-        ]
-    },
-    {
-        name: "Bass",
-        samples: [
-            { label: "Hit Bass", audio: "sounds/bass_hit_c.flac", sample: ":bass_hit_c" },
-            { label: "Hard Bass", audio: "sounds/bass_hard_c.flac", sample: ":bass_hard_c" },
-            { label: "Thick Bass", audio: "sounds/bass_thick_c.flac", sample: ":bass_thick_c" },
-            { label: "Trance Bass", audio: "sounds/bass_trance_c.flac", sample: ":bass_trance_c" },
-            { label: "Drop Bass", audio: "sounds/bass_drop_c.flac", sample: ":bass_drop_c" },
-            { label: "Woodsy Bass", audio: "sounds/bass_woodsy_c.flac", sample: ":bass_woodsy_c" },
-            { label: "Voxy Bass", audio: "sounds/bass_voxy_c.flac", sample: ":bass_voxy_c" },
-            { label: "Voxy Hit Bass", audio: "sounds/bass_voxy_hit_c.flac", sample: ":bass_voxy_hit_c" },
-            { label: "DnB Bass", audio: "sounds/bass_dnb_f.flac", sample: ":bass_dnb_f" }
-        ]
-    },
-    {
-        name: "Tom",
-        samples: [
-            { label: "Mid Soft Tom", audio: "sounds/drum_tom_mid_soft.flac", sample: ":drum_tom_mid_soft" },
-            { label: "Mid Hard Tom", audio: "sounds/drum_tom_mid_hard.flac", sample: ":drum_tom_mid_hard" },
-            { label: "Lo Soft Tom", audio: "sounds/drum_tom_lo_soft.flac", sample: ":drum_tom_lo_soft" },
-            { label: "Lo Hard Tom", audio: "sounds/drum_tom_lo_hard.flac", sample: ":drum_tom_lo_hard" },
-            { label: "Hi Soft Tom", audio: "sounds/drum_tom_hi_soft.flac", sample: ":drum_tom_hi_soft" },
-            { label: "Hi Hard Tom", audio: "sounds/drum_tom_hi_hard.flac", sample: ":drum_tom_hi_hard" }
-        ]
-    },
-    {
-        name: "Ride",
-        samples: [
-            { label: "Tri Ride", audio: "sounds/ride_tri.flac", sample: ":ride_tri" },
-            { label: "Via Ride", audio: "sounds/ride_via.flac", sample: ":ride_via" }
-        ]
-    },
-    {
-        name: "Cymbal",
-        samples: [
-            { label: "Splash Soft", audio: "sounds/drum_splash_soft.flac", sample: ":drum_splash_soft" },
-            { label: "Splash Hard", audio: "sounds/drum_splash_hard.flac", sample: ":drum_splash_hard" }
-        ]
-    },
-    {
-        name: "Cowbell",
-        samples: [
-            { label: "Cowbell", audio: "sounds/drum_cowbell.flac", sample: ":drum_cowbell" }
-        ]
-    },
-    {
-        name: "Roll",
-        samples: [
-            { label: "Roll", audio: "sounds/drum_roll.flac", sample: ":drum_roll" }
-        ]
-    }
-];
+
 
 // 初始化乐器列表，包含类别和采样索引
 let instruments = [
@@ -128,24 +9,6 @@ let instruments = [
 { category: 3, sample: 0 }  // Clap
 ];
 
-// 默认鼓组
-const defaultInstruments = [
-  { category: 0, sample: 0 }, // Kick
-  { category: 1, sample: 0 }, // Snare
-  { category: 2, sample: 0 }, // HiHat
-  { category: 3, sample: 0 }  // Clap
-];
-// 经典动次打次鼓点（16步）
-const defaultGridState = [
-  // Kick: 1、5、9、13步
-  [true, false, false, false, true, false, false, false, true, false, false, false, true, false, false, false],
-  // Snare: 5、13步
-  [false, false, false, false, true, false, false, false, false, false, false, false, true, false, false, false],
-  // HiHat: 每步都打
-  [true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true],
-  // Clap: 5、13步
-  [false, false, false, false, true, false, false, false, false, false, false, false, true, false, false, false]
-];
 
   const steps = 16;
   const gridState = instruments.map(() => Array(steps).fill(false));
@@ -164,6 +27,14 @@ const defaultGridState = [
 
   const playButton = document.getElementById('playButton');
 
+// 用data-tooltip代替title属性，因为不想显示浏览器原生的title弹窗
+playButton.setAttribute('data-tooltip', "Play or pause the drum sequence");
+document.getElementById('addTrackButton').setAttribute('data-tooltip', "Add a new drum track");
+document.querySelector('.btn-clear').setAttribute('data-tooltip', "Clear all clicked drum steps");
+document.querySelector('.btn-code').setAttribute('data-tooltip', "Generate SonicPi code");
+document.getElementById('presetSelect').setAttribute('data-tooltip', "Select drum style preset");
+document.getElementById('resetBotton').setAttribute('data-tooltip', "Reset to selected preset");
+
   bpmRange.addEventListener('input', () => {
   bpm = parseInt(bpmRange.value);
   bpmValue.textContent = bpm;
@@ -172,9 +43,22 @@ const defaultGridState = [
   }
   });
 
-  // 页面加载时初始化为默认鼓点
+  document.getElementById('presetSelect').onchange = resetTracks;
+
+  // 页面加载时
 window.addEventListener('DOMContentLoaded', () => {
+  // 加载风格选项栏
+  const presetSelect = document.getElementById('presetSelect');
+    presetSelect.innerHTML = '';
+    Object.keys(drumPresets).forEach(key => {
+        const option = document.createElement('option');
+        option.value = key;
+        option.textContent = key.charAt(0).toUpperCase() + key.slice(1);
+        presetSelect.appendChild(option);
+    });
+    // 初始化为默认鼓点  
   resetTracks();
+
 });
 
    /* 功能：切换播放状态和图标
@@ -210,6 +94,8 @@ window.addEventListener('DOMContentLoaded', () => {
             isPlaying = false;
             currentStep = 0;
         }
+        // 不显示代码区域
+        document.getElementById('output-area').style.display = 'none';
     }
 
 /* 功能：添加新轨道
@@ -222,16 +108,19 @@ function addTrack() {
 }
 
 function resetTracks() {
-    instruments = JSON.parse(JSON.stringify(defaultInstruments)); // 深拷贝默认乐器列表
+    const preset = drumPresets[document.getElementById('presetSelect').value];
+    if (!preset) preset = drumPresets.classic; // 默认使用 classic 预设
+    instruments = JSON.parse(JSON.stringify(preset.instruments)); // 深拷贝默认乐器列表
     gridState.length = 0; // 清空当前状态
-    defaultGridState.forEach(row => gridState.push([...row])); // 深拷贝默认网格状态
+    preset.grid.forEach(row => gridState.push([...row])); // 深拷贝默认网格状态
+    bpm = preset.bpm || 120; // 使用预设的 BPM 或默认值
+    bpmRange.value = bpm;
+    bpmValue.textContent = bpm;
     buildGrid();
     clearCurrentCells();
-    if (isPlaying) {
-        clearInterval(intervalId);
-        isPlaying = false;
-        currentStep = 0;
-    }
+    loadSamples();
+    // 不显示代码区域
+    document.getElementById('output-area').style.display = 'none';
 }
 
 
@@ -287,6 +176,7 @@ function resetTracks() {
             const deleteButton = document.createElement('button');
             deleteButton.className = 'track-delete-button';
             deleteButton.innerHTML = '✕';
+            // deleteButton.title = 'Delete this track';
             // 监听删除按钮点击事件
             deleteButton.onclick = () => {
                 instruments.splice(row, 1);
@@ -409,6 +299,7 @@ function createInstrumentSelect(trackIndex) {
     // 创建按钮
     const button = document.createElement('button');
     button.className = 'instrument-btn';
+    // button.title = 'Select instrument for this track';
     // 显示当前轨道的乐器
     const instrument = instruments[trackIndex];
     const category = instrumentCategories[instrument.category];
@@ -546,3 +437,4 @@ function playInstrumentSample(categoryIndex, sampleIndex) {
 
   buildGrid();
   loadSamples();
+
