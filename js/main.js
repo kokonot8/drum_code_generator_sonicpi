@@ -1,6 +1,3 @@
-
-
-
 // 初始化乐器列表，包含类别和采样索引
 let instruments = [
 { category: 0, sample: 0 }, // Kick
@@ -154,30 +151,58 @@ function resetTracks() {
   /* 功能：构建网格：
   实现：遍历乐器列表，创建每个乐器的标签和对应的网格单元。每个单元格可以点击切换激活状态（高亮显示）。
   */
-  function buildGrid() {
-    gridContainer.innerHTML = '';
+function buildGrid() {
     const cellSize = 40, cellGap = 5;
     const labelWidth = 150;
-    const deteleteButtonWidth = 45; 
-
-    // 动态调整高度
-    gridContainer.style.height = (instruments.length * (cellSize + cellGap)) + 'px';
+    const deleteButtonWidth = 45;
+    const dividerWidth = deleteButtonWidth + labelWidth + 10;
+    const steps = 16;
     
-    instruments.forEach((inst, row) => {
+    // 计算实际需要的总宽度
+    const totalWidth = dividerWidth + steps * (cellSize + cellGap) - cellGap; // 减去最后一个gap
+    const totalHeight = instruments.length * (cellSize + cellGap) - cellGap; // 减去最后一个gap
 
+    // 1. 步数标签
+    const stepLabels = document.getElementById('stepLabels');
+    stepLabels.innerHTML = '';
+    stepLabels.style.display = 'flex';
+    stepLabels.style.gap = cellGap + 'px';
+    stepLabels.style.alignItems = 'center';
+    stepLabels.style.marginBottom = '10px'; // 添加间距避免重叠
+    
+    // spacer - 对应删除按钮和标签的宽度
+    const spacer = document.createElement('span');
+    spacer.style.display = 'inline-block';
+    spacer.style.width = dividerWidth + 'px';
+    stepLabels.appendChild(spacer);
+    
+    // 步数标签
+    for (let col = 0; col < steps; col++) {
+        const label = document.createElement('span');
+        label.classList.add('grid-step-label');
+        label.textContent = col + 1;
+        label.style.width = cellSize + 'px';
+        label.style.textAlign = 'center';
+        stepLabels.appendChild(label);
+    }
+
+    // 2. drumGrid - 使用计算出的实际宽度和高度
+    gridContainer.innerHTML = '';
+    gridContainer.setAttribute('width', totalWidth);
+    gridContainer.setAttribute('height', totalHeight);
+
+    instruments.forEach((inst, row) => {
+        // 删除按钮
         const foreign = document.createElementNS('http://www.w3.org/2000/svg', 'foreignObject');
         foreign.setAttribute('x', 0);
         foreign.setAttribute('y', row * (cellSize + cellGap));
-        foreign.setAttribute('width', deteleteButtonWidth);
+        foreign.setAttribute('width', deleteButtonWidth);
         foreign.setAttribute('height', cellSize);
 
-         // 只在轨道数大于1时显示删除按钮
         if (instruments.length > 1) {
             const deleteButton = document.createElement('button');
             deleteButton.className = 'track-delete-button';
             deleteButton.innerHTML = '✕';
-            // deleteButton.title = 'Delete this track';
-            // 监听删除按钮点击事件
             deleteButton.onclick = () => {
                 instruments.splice(row, 1);
                 gridState.splice(row, 1);
@@ -187,13 +212,13 @@ function resetTracks() {
         }
         gridContainer.appendChild(foreign);
 
+        // 乐器选择按钮
         const labelforeign = document.createElementNS('http://www.w3.org/2000/svg', 'foreignObject');
-        labelforeign.setAttribute('x', deteleteButtonWidth + 10);
+        labelforeign.setAttribute('x', deleteButtonWidth + 10);
         labelforeign.setAttribute('y', row * (cellSize + cellGap));
         labelforeign.setAttribute('width', labelWidth);
         labelforeign.setAttribute('height', cellSize);
 
-        //创建乐器选择下拉框
         const div = document.createElement('div');
         div.style.display = 'flex';
         div.style.alignItems = 'center';
@@ -202,42 +227,30 @@ function resetTracks() {
         labelforeign.appendChild(div);
         gridContainer.appendChild(labelforeign);
 
-        const dividerWidth = deteleteButtonWidth + labelWidth;
-        // //创建分界线
-        // const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
-        // line.setAttribute('x1', dividerWidth);
-        // line.setAttribute('y1', row * (cellSize + cellGap));
-        // line.setAttribute('x2', dividerWidth);
-        // line.setAttribute('y2', row * (cellSize + cellGap) + cellSize);
-        // line.classList.add('grid-line');
-        // gridContainer.appendChild(line);
-
-      for (let col = 0; col < steps; col++) {
-        // 创建 SVG 矩形元素作为网格单元
-        const cell = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
-        cell.setAttribute('x', dividerWidth + 5 + col * (cellSize + cellGap));
-        cell.setAttribute('y', row * (cellSize + cellGap));
-        cell.setAttribute('width', cellSize);
-        cell.setAttribute('height', cellSize);
-        cell.classList.add('cell');
-        if (gridState[row][col]) {
-          cell.classList.add('active');
+        // 网格 cell
+        for (let col = 0; col < steps; col++) {
+            const cell = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+            cell.setAttribute('x', dividerWidth + col * (cellSize + cellGap));
+            cell.setAttribute('y', row * (cellSize + cellGap));
+            cell.setAttribute('width', cellSize);
+            cell.setAttribute('height', cellSize);
+            cell.classList.add('cell');
+            if (gridState[row][col]) {
+                cell.classList.add('active');
+            }
+            cell.dataset.row = row;
+            cell.dataset.col = col;
+            cell.addEventListener('click', () => {
+                const r = +cell.dataset.row;
+                const c = +cell.dataset.col;
+                gridState[r][c] = !gridState[r][c];
+                cell.classList.toggle('active', gridState[r][c]);
+            });
+            gridContainer.appendChild(cell);
         }
-        cell.dataset.row = row;
-        cell.dataset.col = col;
-
-        cell.addEventListener('click', () => {
-          const r = +cell.dataset.row;
-          const c = +cell.dataset.col;
-          gridState[r][c] = !gridState[r][c];
-          cell.classList.toggle('active', gridState[r][c]);
-        });
-
-        gridContainer.appendChild(cell);
-      }
     });
-  }
-//创建单列下拉选项框
+}
+  //创建单列下拉选项框
 // function createInstrumentSelect(trackIdx) {
 //     // 创建下拉选择框
 //     const select = document.createElement('select');

@@ -327,3 +327,20 @@ label[for="bpmRange"] {
     pointer-events: none;
 }
 
+.grid-step-label {
+    font-size: 13px;
+    fill: #888;
+    text-anchor: middle;
+    pointer-events: none;
+    font-family: 'Segoe UI', Arial, sans-serif;
+}
+
+.grid-area {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+#stepLabels {
+    margin-bottom: 10px;
+}
